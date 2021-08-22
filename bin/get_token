@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]
-then
-	echo "gros..." >&2
-fi
 if [ $(getopt e $@ | cut -d\  -f2) = -e ]
 then
 	E=TRUE;
