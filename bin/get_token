@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	echo "gros..." >&2
+fi
+if [ $(getopt e $@ | cut -d\  -f2) = -e ]
+then
+	E=TRUE;
+fi
+uid=$(getopt e $@ | getopt e "$@" | tr "\--" '\n' | tail -n1 |cut -d\  -f2)
+SECRET=$(getopt e $@ | getopt e "$@" | tr "\--" '\n'  | tail -n1| cut -d\  -f3)
+if [ -n "$uid" -a -n "$SECRET" ]
+then
+	if [ "$E" = TRUE ] 
+	then
+		curl -sX POST --data "grant_type=client_credentials&client_id=$uid&client_secret=$SECRET" https://api.intra.42.fr/oauth/token | cut -d\" -f11 | cut -d\: -f2 | cut -d\, -f1
+
+	else
+		curl -sX POST --data "grant_type=client_credentials&client_id=$uid&client_secret=$SECRET" https://api.intra.42.fr/oauth/token | cut -d\" -f4
+	fi
+else
+	echo "please specify uid and secret" >&2
+fi;
+

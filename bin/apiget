@@ -1,0 +1,10 @@
+#!/bin/bash
+
+TOKEN=$(get_token $UID42 $SECRET42 )
+
+if command -v jq &> /dev/null
+then
+	curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "https://api.intra.42.fr/v2/$1?per_page=100&$2" -g | jq . 
+else
+	curl -s -H  "Authorization: Bearer $TOKEN" "https://api.intra.42.fr/v2/$1?per_page=100&$2" -g;
+fi

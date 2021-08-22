@@ -1,0 +1,3 @@
+#compdef apiget
+
+_multi_parts  / "( $(api_autocomplete $words[2]))"
