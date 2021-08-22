@@ -8,6 +8,9 @@ then
 	grep "source $PWD/zsh_conf.sh" ~/.zshrc > /dev/null
 	if [ $? -eq 1 ]
 	then
+		echo "PWD=$PWD" >tmp
+		cat zsh_conf.sh >>tmp
+		mv tmp zsh_conf.sh
 		printf "\nsource $PWD/zsh_conf.sh\n" >> ~/.zshrc
 	fi
 	echo "installation complete. please specify the UID and SECRET of your application in zsh_conf.sh and restart your shell"
