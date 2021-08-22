@@ -7,7 +7,7 @@ then
 	make -C autocomplete clean
 	cp autocomplete/api_autocomplete bin/.
 	printf "\nsource $PWD/zsh_conf.sh\n" >> ~/.zshrc
-	echo "installation complete. please restart your shell"
+	echo "installation complete. please specify the UID and SECRET of your application in zsh_conf.sh and restart your shell"
 else
 	echo "please add $PWD/bin to your PATH"
 fi
