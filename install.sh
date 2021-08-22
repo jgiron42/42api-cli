@@ -5,7 +5,7 @@ if [ -e ~/.zshrc ]
 then
 	make -C autocomplete
 	make -C autocomplete clean
-	cp autocomplete/autocomplete bin/.
+	cp autocomplete/api_autocomplete bin/.
 	printf "\nsource $PWD/zsh_conf.sh\n" >> ~/.zshrc
 	echo "installation complete. please restart your shell"
 else
