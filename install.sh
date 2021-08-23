@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+make -C json-beautifier
+make -C json-beautifier clean
+cp json-beautifier/json-beautifier bin/.
+
 if [ -e ~/.zshrc ]
 then
 	make -C autocomplete
