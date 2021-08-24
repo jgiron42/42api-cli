@@ -4,6 +4,8 @@ Voici deux scripts shell permettants d'interagir avec l'api de 42 (si vous avez 
 
 Rien de transcendant a priori sauf que le repo integre aussi de l'autocompletion pour zsh permettant de naviguer beaucoup plus rapidement dans l'api!
 
+Il y a egalement un beautifier basique immitant jq au cas ou vous n'avez pas jq
+
 ![gif](https://i.postimg.cc/Xvnj7Twf/ezgif-com-gif-maker.gif)
 
 ## installation:
