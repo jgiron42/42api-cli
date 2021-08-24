@@ -29,13 +29,8 @@ int main() {
 		}
 		else if (buf == '\\')
 		{
-			if (escaped)
-			{
-				escaped = 0;
-				write(1, &buf, 1);
-			}
-			else
-				escaped = 1;
+			write(1, &buf, 1);
+			escaped = !escaped;
 		}
 		else if (quote)
 		{
