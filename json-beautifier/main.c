@@ -21,7 +21,7 @@ int main() {
 			{
 				quote = 1;
 				if (key)
-					write(1,"\033[0;34m", 7);
+					write(1,"\033[1;34m", 7);
 				else
 					write(1,"\033[0;32m", 7);
 				write(1, &buf, 1);
@@ -46,7 +46,7 @@ int main() {
 			if (buf != ',')
 				depth++;
 			for (int i = 0; i < depth; i++)
-				write(1, "\t",1);
+				write(1, "  ",2);
 			key = 1;
 		}
 		else if (buf == ']' || buf == '}')
@@ -54,7 +54,7 @@ int main() {
 			depth--;
 			write(1, "\n", 1);
 			for (int i = 0; i < depth; i++)
-				write(1, "\t",1);
+				write(1, "  ",2);
 			write(1, &buf, 1);
 		}
 		else if (buf == ':')
