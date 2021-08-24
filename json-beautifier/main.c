@@ -26,6 +26,7 @@ int main() {
 					write(1,"\033[0;32m", 7);
 				write(1, &buf, 1);
 			}
+			escaped = 0;
 		}
 		else if (buf == '\\')
 		{
