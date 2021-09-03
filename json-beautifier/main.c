@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 int main() {
 	char buf;
@@ -6,6 +7,7 @@ int main() {
 	char quote = 0;
 	char escaped = 0;
 	char key = 1;
+	char enable_color = !!isatty(1);
 
 	while (read(0, &buf, 1))
 	{
@@ -15,15 +17,18 @@ int main() {
 			{
 				quote = 0;
 				write(1, &buf, 1);
-				write(1,"\033[0;0m", 6);
+				if (enable_color)
+					write(1,"\033[0;0m", 6);
 			}
 			else
 			{
 				quote = 1;
-				if (key)
-					write(1,"\033[1;34m", 7);
-				else
-					write(1,"\033[0;32m", 7);
+				if (enable_color) {
+					if (key)
+						write(1, "\033[1;34m", 7);
+					else
+						write(1, "\033[0;32m", 7);
+				}
 				write(1, &buf, 1);
 			}
 			escaped = 0;
@@ -40,7 +45,8 @@ int main() {
 		}
 		else if (buf == '[' || buf == '{' || buf == ',')
 		{
-			write(1,"\033[0;0m", 6);
+			if (enable_color)
+				write(1,"\033[0;0m", 6);
 			write(1, &buf, 1);
 			write(1, "\n", 1);
 			if (buf != ',')
@@ -65,7 +71,7 @@ int main() {
 		}
 		else
 		{
-			if (buf == 'n')
+			if (buf == 'n' && enable_color)
 				write(1,"\033[0;90m", 7);
 			write(1, &buf, 1);
 			escaped = 0;
