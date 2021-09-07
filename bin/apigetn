@@ -1,5 +1,5 @@
 #!/bin/bash
-TOKEN=$(get_token UID42 SECRET42 )
+TOKEN=$(get_token $UID42 $SECRET42 )
 
 if command -v jq &> /dev/null
 then
