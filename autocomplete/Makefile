@@ -1,6 +1,6 @@
 SRCS = 	 main.cpp 
 OBJS = ${SRCS:.cpp=.o}
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 .cpp.o:
 	clang++ $(CFLAGS) -c $< -o $(<:.cpp=.o)
 NAME =  api_autocomplete 
