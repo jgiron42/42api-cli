@@ -31,5 +31,5 @@ do
 
 		printf "\b\b\b\b\b\b\b\b\b\b" >&2
 	fi
-	sleep 0.5
+	[ -z "$DELAY42" ] &&  sleep 0.5
 done
