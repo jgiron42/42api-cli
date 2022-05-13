@@ -1,6 +1,8 @@
 #!/bin/bash
 TOKEN=$(get_token $UID42 $SECRET42 )
 
+[ -z "$URL42" ] && URL42=https://api.intra.42.fr
+
 if command -v jq &> /dev/null
 then
 	BEAUTIFIER='jq .'
@@ -12,7 +14,7 @@ for I in $(seq $2)
 do
 	if [ -t 1 ]
 	then
-		DATA=$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "https://api.intra.42.fr/v2/$1?per_page=100&page=$I&$3" -g)
+		DATA=$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&page=$I&$3" -g)
 		if [ ! -n "$DATA" ]
 		then
 			break
@@ -20,7 +22,7 @@ do
 		echo $DATA | $BEAUTIFIER
 	else
 		printf %-10d $I >&2
-		DATA=$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "https://api.intra.42.fr/v2/$1?per_page=100&page=$I&$3" -g)
+		DATA=$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&page=$I&$3" -g)
 		if [ ! -n "$DATA" ]
 		then
 			break

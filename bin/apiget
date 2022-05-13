@@ -2,9 +2,11 @@
 
 TOKEN=$(get_token $UID42 $SECRET42 )
 
+[ ! "$URL42" ]  && URL42=https://api.intra.42.fr
+
 if command -v jq &> /dev/null
 then
-	curl -s -H  "Authorization: Bearer $TOKEN" "https://api.intra.42.fr/v2/$1?per_page=100&$2" -g | jq . 
+	curl -s -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&$2" -g | jq . 
 else
-	curl -s -H  "Authorization: Bearer $TOKEN" "https://api.intra.42.fr/v2/$1?per_page=100&$2" -g | json-beautifier
+	curl -s -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&$2" -g | json-beautifier
 fi
