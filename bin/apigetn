@@ -14,20 +14,20 @@ for I in $(seq $2)
 do
 	if [ -t 1 ]
 	then
-		DATA=$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&page=$I&$3" -g)
+		DATA="$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&page=$I&$3" -g)"
 		if [ ! -n "$DATA" ]
 		then
 			break
 		fi
-		echo $DATA | $BEAUTIFIER
+		echo "$DATA" | $BEAUTIFIER
 	else
 		printf %-10d $I >&2
-		DATA=$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&page=$I&$3" -g)
+		DATA="$(curl -s -H 'If-None-Match:  W/"4f53cda18c2baa0c0354bb5f9a3ecbe5"' -H  "Authorization: Bearer $TOKEN" "$URL42/v2/$1?per_page=100&page=$I&$3" -g)"
 		if [ ! -n "$DATA" ]
 		then
 			break
 		fi
-		echo $DATA | $BEAUTIFIER
+		echo "$DATA" | $BEAUTIFIER
 
 		printf "\b\b\b\b\b\b\b\b\b\b" >&2
 	fi
